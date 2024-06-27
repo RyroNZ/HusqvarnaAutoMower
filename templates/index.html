@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mower Control System</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        // Auto-refresh the page every 30 seconds
+        setTimeout(function(){
+            window.location.reload(1);
+        }, 30000);
+    </script>
+</head>
+<body>
+    <h1>Husqvarna Mower Control System</h1>
+    <div class="status-container">
+        <div class="status-section">
+            <h2>Current Status</h2>
+            <p><strong>Mowers:</strong> {{ status.mower_names }}</p>
+            <p><strong>Is Weather Good:</strong> {{ status.good_weather }}</p>
+            <p><strong>Is it Currently Raining:</strong> {{ status.currently_raining }}</p>
+            <p><strong>Current Action:</strong> <span class="{{ status.current_action | lower }}">{{ status.current_action }}</span></p>
+        </div>
+        <div class="current-weather">
+            <h2>Current Weather</h2>
+            <p><strong>Temperature:</strong> {{ status.current_weather['current_weather']['temperature'] }} °C</p>
+            <p><strong>Weather Description:</strong> {{ status.current_weather['current_weather']['weather_description'] }}</p>
+        </div>
+    </div>
+
+    <div class="weather-container">
+        <div class="weather-section">
+            <h2>Past Weather (Last 48 Hours)</h2>
+            <table class="weather-table">
+                <tr>
+                    <th>Local Time</th>
+                    <th>Description</th>
+                </tr>
+                {% for i in range(status.min_length) %}
+                <tr>
+                    <td>{{ status.past_weather['local_time'][-i-1] }}</td>
+                    <td class="{{ 'dry' if 'Dry' in status.past_weather['intensity'][-i-1] else 'wet' }}">{{ status.past_weather['description'][-i-1] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="weather-section">
+            <h2>Forecasted Weather (Next 24 Hours)</h2>
+            <table class="weather-table">
+                <tr>
+                    <th>Local Time</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+                {% for item in status.forecast_analysis %}
+                <tr>
+                    <td>{{ item.local_time }}</td>
+                    <td class="{{ 'dry' if 'Dry' in item.intensity else 'wet' }}">{{ item.description }}</td>
+                    <td class="{{ item.action | lower }}">
+                        {% if item.action == 'Resume' %}
+                        Resume
+                        {% elif item.action == 'Pause' %}
+                        Pause
+                        {% else %}
+                        Time
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>

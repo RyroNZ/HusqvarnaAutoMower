@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f5f5f5;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.status-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.status-section, .current-weather {
+    width: 48%;
+}
+
+.weather-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.weather-section {
+    width: 48%;
+}
+
+.weather-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.weather-table, .weather-table th, .weather-table td {
+    border: 1px solid black;
+}
+
+.weather-table th, .weather-table td {
+    padding: 8px;
+    text-align: left;
+}
+
+.weather-table th {
+    background-color: #f2f2f2;
+}
+
+.weather-table tr:nth-child(even) {
+    background-color: #e6f7ff;
+}
+
+.weather-table tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.dry {
+    background-color: #e0ffe0;
+}
+
+.wet {
+    background-color: #ffe0e0;
+}
+
+.resume {
+    background-color: #d4edda; /* Green */
+    color: #155724;
+}
+
+.time {
+    background-color: #fff3cd; /* Yellow */
+    color: #856404;
+}
+
+.weather {
+    background-color: #ffeeba; /* Orange */
+    color: #856404;
+}
+
+.currently-raining {
+    background-color: #f8d7da; /* Red */
+    color: #721c24;
+}
