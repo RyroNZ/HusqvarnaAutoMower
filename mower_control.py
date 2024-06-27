@@ -112,7 +112,7 @@ class MowerControl:
         print("Fetched past weather data.")
 
         data = response.json()
-        local_tz = pytz.timezone('Pacific/Auckland')  # Change to your local time zone
+        local_tz = pytz.timezone('Your/LocalTimezone')  # Change to your local time zone
 
         # Filter out future timestamps and include local time, description, and intensity
         hourly_data = {'time': [], 'weathercode': [], 'local_time': [], 'description': [], 'intensity': []}
@@ -141,7 +141,7 @@ class MowerControl:
             f"{'UTC Time':<20} {'Local Time':<20} {'Weather Code':<15} {'Description':<30} {'Intensity':<15} {'Weight':<10} {'Good Weather':<15}")
         print("-" * 150)
 
-        local_tz = pytz.timezone('Pacific/Auckland')  # Change to your local time zone
+        local_tz = pytz.timezone('Your/LocalTimezone')  # Change to your local time zone
 
         for i, code in enumerate(weather_codes):
             # Adjust weight so that the newest data has the highest weight
@@ -189,7 +189,7 @@ class MowerControl:
         total_hours = len(weather_codes)
         forecast_analysis = []
 
-        local_tz = pytz.timezone('Pacific/Auckland')  # Change to your local time zone
+        local_tz = pytz.timezone('Your/LocalTimezone')  # Change to your local time zone
         current_time = datetime.now(timezone.utc)
 
         for i, code in enumerate(weather_codes):
@@ -276,7 +276,7 @@ class MowerControl:
             self.forecast_analysis = self.analyze_forecast_weather(self.forecast_weather)
 
             # Get current local time
-            local_tz = pytz.timezone('Pacific/Auckland')  # Change to your local time zone
+            local_tz = pytz.timezone('Your/LocalTimezone')  # Change to your local time zone
             current_time = datetime.now(local_tz)
             current_hour = current_time.hour
 
